@@ -6,7 +6,7 @@ require('dotenv').config();
 const PORT = process.env.PORT ;
 const dbConnection=require('./config/db');
 const routes= require('./routes/productRoutes');
-const path = require('path');
+
 
 //conectamos la base de datos
 dbConnection();
