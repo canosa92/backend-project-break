@@ -1,18 +1,16 @@
-const express=require('express')
-const routes =express.Router()
-const productControllers =require('../controllers/productController')
+const express = require('express');
+const routes = express.Router();
+const productControllers = require('../controllers/productController');
 
-//se le añade la ruta / para
-routes.get('/', productControllers.showProducts)  
-routes.get('/products',productControllers.showProducts);
-routes.get('/products/:productId',);
-routes.get('/dashboard',);
-routes.get('/dashboard/new',);
-routes.post('/dashboard',);
-routes.get('/dashboard/:productId:',);
-routes.get('/dashboard/:productId/edit',);
-routes.put('/dashboard/:productId',);
-routes.delete('/dashboard/:productId/delete',);
+routes.get('/', productControllers.showCategory);  
+routes.get('/products', productControllers.showProducts);
+routes.get('/products/:productId', productControllers.showProductById);
+routes.get('/:categoria', productControllers.showProductsByCategory);
+routes.get('/dashboard', );
+routes.get('/dashboard/new', );
+routes.post('/dashboard/new',);
+routes.get('/dashboard/edit/:productId', );
+routes.put('/dashboard/edit/:productId', );
+routes.delete('/dashboard/delete/:productId',);
 
-
-module.exports= routes
+module.exports = routes;
