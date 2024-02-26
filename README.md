@@ -1,6 +1,6 @@
 # Tienda de ropa
 
-Vamos a montar una tienda de ropa con un catálogo de productos y un dashboard para el administrador. Los productos se guardarán en una base de datos de mongo en Atlas. Podemos usar como referencia el pdf [web_ejemplo.pdf](web_ejemplo.pdf) que contiene un ejemplo de cómo podría ser la interfaz de la tienda y el dashboard.
+Montarmos una tienda de ropa con un catálozgo de productos y un dashboard para el administrador. Los productos se guardan en una base de datos de mongo en Atlas. Se uso como referencia el pdf [web_ejemplo.pdf](web_ejemplo.pdf) que contiene un ejemplo de cómo podría ser la interfaz de la tienda y el dashboard.
 
 ## Índice
 
@@ -114,8 +114,8 @@ Vamos a crear las rutas CRUD para los productos. Al usar formularios html, las r
 - POST /dashboard: Crea un nuevo producto.
 - GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
 - GET /dashboard/:productId/edit: Devuelve el formulario para editar un producto.
-- POST /dashboard/:productId: Actualiza un producto.
-- POST /dashboard/:productId/delete: Elimina un producto.
+- PUT /dashboard/:productId: Actualiza un producto.
+- DELETE /dashboard/:productId/delete: Elimina un producto.
 
 ## Creación de controladores
 

@@ -1,0 +1,5 @@
+- to ignore node modules folder
+node_modules
+
+-to ignore the file dot env
+.env
