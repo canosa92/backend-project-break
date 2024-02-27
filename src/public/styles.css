@@ -41,18 +41,28 @@ section h2{
     gap: 30px;
     width: auto;
     height: auto;
-}
+    @media screen and (max-width: 768px){
+        justify-content: center;
+        display: grid;
+        grid-template-columns: repeat(1, 1fr);
+      }
+    }
 .home img{
     width: 700px;
 }
 #Hometexto{
     width: 850px;
+    @media screen and (max-width: 768px){
+        width: auto;
+        grid-template-columns: repeat(1, 1fr);
+      }
 }
 #Hometexto h4{
     font-size: 30px;
     text-decoration: underline;
     padding: 0px 20px 15px 0px;
 }
+
 
 .card--wrapper {
     margin: 80px 50px;
