@@ -1,7 +1,79 @@
-nav{
-    display: flex;
-    justify-content: space-around;
-    background-color: rgb(255, 255, 255);
-    padding: 10px;
+*{
+    margin: 0; 
+    padding: 0;
+    border: 0; 
+    outline: 0;
+    font-family: 'Helvetica Neue', sans-serif;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+nav{ 
+    background-color: #212529;
+    font-size: 18px;
+    margin-bottom: 35px;
+ 
+}
+.nav-link{
+    color: #f5eeeed2;
+     text-transform: capitalize;
+    font-weight: 500; 
+}   
+
+
+
+section{
+    margin: 80px 30px;
+    width: auto;
+    height: auto;
 }
 
+section h2{
+    font-size: 40px;
+    text-align: center;
+    font-weight: 700;
+}
+.home{
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+    width: auto;
+    height: auto;
+}
+.home img{
+    width: 700px;
+}
+#Hometexto{
+    width: 850px;
+}
+#Hometexto h4{
+    font-size: 30px;
+    text-decoration: underline;
+    padding: 0px 20px 15px 0px;
+}
+
+.card--wrapper {
+    margin: 80px 50px;
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    justify-items: center;
+    grid-gap: 1.5rem;
+    @media screen and (min-width: 768px) and (max-width: 1023px){
+      grid-template-columns: repeat(2, 1fr);
+    }
+    @media screen and (min-width: 1024px) {
+      grid-template-columns: repeat(3, 1fr);
+    }
+}
+.card{
+    margin: 80px 50px;
+    display: flex;
+    justify-content: center;
+}
+/*estilo para el footer*/
+.container{
+    background-color: #212529;
+    margin: 20px 0;
+}
