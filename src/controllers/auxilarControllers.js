@@ -20,61 +20,52 @@ const baseHtml = () => {
 //Fucnión auxiliar para generar la barra de navegación
  const getNavBar = (req)=> {
     let navBarHtml = `
-    
-
-<nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
-<div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-<a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
-    <img src="images/_6cda621f-ae49-4858-affb-b6e0cead08db-removebg-preview.png" class="h-8" alt="Flowbite Logo" >
-    <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white"></span>
-</a>
-<div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
-
-    <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
+   <nav class="bg-white dark:bg-gray-900 fixed w-full z-20 top-0 start-0 border-b border-gray-200 dark:border-gray-600">
+    <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
+      <a href="/" class="flex items-center space-x-3 rtl:space-x-reverse">
+        <img src="images/_6cda621f-ae49-4858-affb-b6e0cead08db-removebg-preview.png" class="h-8" alt="Lebalete Logo" >
+        <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Lebalete</span>
+      </a>
+    <div class="flex md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse">
+      <button data-collapse-toggle="navbar-sticky" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-sticky" aria-expanded="false">
       <span class="sr-only">Open main menu</span>
       <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
+        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15"/>
       </svg>
   </button>
 </div>
 <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-sticky">
   <ul class="flex flex-col p-4 md:p-0 mt-4 font-medium border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
-    <li>
-      <a href="/" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Inicio</a>
+    <li><a href="/" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 md:dark:text-blue-500" aria-current="page">Inicio</a>
     </li>
-    <li>
-      <a href="/products" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Productos</a>
+    <li><a href="/products" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Productos</a>
     </li>
-    <li>
-      <a href="/Camisetas" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Camisetas</a>
+    <li><a href="/Camisetas" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Camisetas</a>
     </li>
-    <li>
-      <a href="/Pantalones" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pantalones</a>
+    <li><a href="/Pantalones" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Pantalones</a>
     </li>
-    <li>
-      <a href="/Zapatos" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Zapatos</a>
+    <li><a href="/Zapatos" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Zapatos</a>
     </li>
-    <li>
-      <a href="/Accesorios" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Accesorios</a>
+    <li><a href="/Accesorios" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Accesorios</a>
     </li>
-    <li>
-      <a href="/dashboard" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
-    </li>
-  `
+    <li><a href="/dashboard" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Dashboard</a>
+    </li>`;
     // Si estamos en la ruta del dashboard, agregamos un enlace para subir un nuevo producto
     if (req.path === '/dashboard') {
       navBarHtml += `
-      <li>
-      <a href="/dashboard/new" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Nuevo Producto</a>
-    </li>
-        `;
+        <li><a href="/dashboard/new" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-blue-700 md:p-0 md:dark:hover:text-blue-500 dark:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700">Nuevo Producto</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>`;
+        return  navBarHtml;
     }
     //cerramos la lista y el div que contiene la barra de navegacion
     navBarHtml += `</ul>
     </div>
   </div>
-</nav>
-`;
+</nav>`;
     return navBarHtml;
   }
 
@@ -86,21 +77,17 @@ return `
     <div class="w-full max-w-screen-xl mx-auto p-4 md:py-8">
         <div class="sm:flex sm:items-center sm:justify-between">
             <a href="/" class="flex items-center mb-4 sm:mb-0 space-x-3 rtl:space-x-reverse">
-                <img src="images/_6cda621f-ae49-4858-affb-b6e0cead08db-removebg-preview.png" class="h-8" alt="Flowbite Logo" />
-                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Raixade</span>
+                <img src="images/_6cda621f-ae49-4858-affb-b6e0cead08db-removebg-preview.png" class="h-8" alt="Le balete Logo"/>
+                <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Lebalete</span>
             </a>
             <ul class="flex flex-wrap items-center mb-6 text-sm font-medium text-gray-500 sm:mb-0 dark:text-gray-400">
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">About</a>
+                <li><a href="#" class="hover:underline me-4 md:me-6">About</a>
                 </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
+                <li><a href="#" class="hover:underline me-4 md:me-6">Privacy Policy</a>
                 </li>
-                <li>
-                    <a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
+                <li><a href="#" class="hover:underline me-4 md:me-6">Licensing</a>
                 </li>
-                <li>
-                    <a href="#" class="hover:underline">Contact</a>
+                <li><a href="#" class="hover:underline">Contact</a>
                 </li>
             </ul>
         </div>
@@ -108,7 +95,6 @@ return `
         <span class="block text-sm text-gray-500 sm:text-center dark:text-gray-400">© 2023 <a href="https://flowbite.com/" class="hover:underline">Flowbite™</a>. All Rights Reserved.</span>
     </div>
 </footer>
-
 <script src="https://cdnjs.cloudflare.com/ajax/libs/flowbite/2.3.0/flowbite.min.js"></script>
 </body>
 </html>`
@@ -195,49 +181,81 @@ const createHomeBody = () => {
     let  productsCard = '';
     let html = '';
     for (let product of products) {
+      //const isDashboard = req.url.includes('/dashboard')
       html += `
       <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-         <a href="#">
+         <a href="/products/${product._id}">
           <img class="rounded-t-lg" src="/${product.imagen}" alt="${product.imagen}" />
         </a>
     <div class="p-5">
         <a href="#">
             <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.nombre}</h5>
         </a>
-        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}.</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}.</p> 
         <a href="/products/${product._id}" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
             Ver Detalle
              <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                 <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
             </svg>
         </a>
-    </div>
-</div>
-`;
+        </div>
+      </div>`;
     }
     productsCard = `<div class="card--wrapper ">${html}</div>`;
     return productsCard;
   }
   
+// Funcion auxilar que nos ayuda a pintar las cartas de todos los productos
+const getDashboard=(products)=> {
+  let  dashboardCard = '';
+  let dahsboardhtml = '';
+  for (let product of products) {
+    console.log(product)
+    let carta = `
+    <div class="card">
+      <a href='/dashboard/${product._id}'class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/${product.imagen}" alt="${product.imagen}">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.nombre}</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Precio: </strong>${product.precio}€</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Talla: </strong>${product.talla}</p>
+        <a href="/products/${product._id}/delete" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+           Eliminar producto
+          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+        <a href="/products/${product._id}/edit" class="inline-flex items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+          Editar producto
+          <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9"/>
+          </svg>
+        </a>
+      </div>
+    </div>`;
+    dahsboardhtml += carta
+    console.log(productHtml)
+}
+dashboardCard = `<div">${dahsboardhtml}</div>`;
+return dashboardCard;
+}
 
 
 //Funcion auxilar para pintar la card de una sola card, para cuando llamemos por el id
 const getProductCard = (product) => {
   const html = `
   <div class="card">
-  <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-  <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/${product.imagen}" alt="${product.imagen}">
-  <div class="flex flex-col justify-between p-4 leading-normal">
-      <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.nombre}</h5>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}</p>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Precio: </strong>${product.precio}€</p>
-      <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Talla: </strong>${product.talla}</p>
-
-  </div>
-</a>
-</div>
-
-  `;
+    <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
+      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/${product.imagen}" alt="${product.imagen}">
+      <div class="flex flex-col justify-between p-4 leading-normal">
+        <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.nombre}</h5>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Precio: </strong>${product.precio}€</p>
+        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400"><strong>Talla: </strong>${product.talla}</p>
+      </div>
+    </a>
+  </div>`;
   return html;
 };
 
@@ -288,6 +306,53 @@ const formNew =()=>{
    return form
 };
 
+const EditProductForm = (product) => {
+  return `
+      <div class="container">
+          <h2>Editar Producto</h2>
+          <form action="/dashboard/${product._id}" method="POST">
+              <div class="mb-3">
+                  <label for="nombre" class="form-label">Nombre</label>
+                  <input type="text" class="form-control" id="nombre" name="nombre" value="${product.nombre}" required>
+              </div>
+              <div class="mb-3">
+                  <label for="descripcion" class="form-label">Descripción</label>
+                  <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required>${product.descripcion}</textarea>
+              </div>
+              <div class="mb-3">
+                  <label for="imagen" class="form-label">URL de la Imagen</label>
+                  <input type="url" class="form-control" id="imagen" name="imagen" value="${product.imagen}" required>
+              </div>
+              <div class="mb-3">
+                  <label for="categoria" class="form-label">Categoría</label>
+                  <select class="form-select" id="categoria" name="categoria" required>
+                      <option value="Camisetas" ${product.categoria === 'Camisetas' ? 'selected' : ''}>Camisetas</option>
+                      <option value="Pantalones" ${product.categoria === 'Pantalones' ? 'selected' : ''}>Pantalones</option>
+                      <option value="Zapatos" ${product.categoria === 'Zapatos' ? 'selected' : ''}>Zapatos</option>
+                      <option value="Accesorios" ${product.categoria === 'Accesorios' ? 'selected' : ''}>Accesorios</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="talla" class="form-label">Talla</label>
+                  <select class="form-select" id="talla" name="talla" required>
+                      <option value="XS" ${product.talla === 'XS' ? 'selected' : ''}>XS</option>
+                      <option value="S" ${product.talla === 'S' ? 'selected' : ''}>S</option>
+                      <option value="M" ${product.talla === 'M' ? 'selected' : ''}>M</option>
+                      <option value="L" ${product.talla === 'L' ? 'selected' : ''}>L</option>
+                      <option value="XL" ${product.talla === 'XL' ? 'selected' : ''}>XL</option>
+                  </select>
+              </div>
+              <div class="mb-3">
+                  <label for="precio" class="form-label">Precio</label>
+                  <input type="number" class="form-control" id="precio" name="precio" value="${product.precio}" required>
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+          </form>
+      </div>
+  `;
+};
+
+
 //exportamos todos los modulos
 module.exports={
     baseHtml,
@@ -295,6 +360,8 @@ module.exports={
     footer,
     createHomeBody,
     getProductCards,
+    getDashboard,
     getProductCard,
-    formNew
+    formNew,
+    EditProductForm 
 }
