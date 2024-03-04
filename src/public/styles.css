@@ -83,7 +83,13 @@ section h2{
     justify-content: center;
 }
 
-.container{
-    display: flex;
-    align-items: center;
+.containerForm{
+    border: #212529 2px solid;
+    margin: 50px 200px;
+}
+.containerForm h3{
+    text-align: center;
+    font-weight: bolder;
+    font-size: x-large;
+    margin-bottom: 10px;
 }

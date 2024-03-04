@@ -215,7 +215,7 @@ const createHomeBody = () => {
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
         </div>
         <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">${product.precio}</span>
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">${product.precio}€</span>
             <a href="products/${product._id}" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Mas informacion</a>
         </div>
     </div>
@@ -225,7 +225,7 @@ const createHomeBody = () => {
     return productsCardq;
   }
   
-// Funcion auxilar que nos ayuda a pintar las cartas de todos los productos
+/*Funcion auxilar que nos ayuda a pintar las cartas de todos los productos
 const getDashboard1 = (products) => {
   const productsCard = products.map(product => {
     return `
@@ -247,7 +247,7 @@ const getDashboard1 = (products) => {
             <span class="bg-blue-100 text-blue-800 text-xs font-semibold px-2.5 py-0.5 rounded dark:bg-blue-200 dark:text-blue-800 ms-3">5.0</span>
           </div>
           <div class="flex items-center justify-between">
-            <span class="text-3xl font-bold text-gray-900 dark:text-white">${product.precio}</span>
+            <span class="text-3xl font-bold text-gray-900 dark:text-white">${product.precio}€</span>
             <a href="/dashboard/${product._id}/delete" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Eliminar producto</a>
             <a href="/dashboard/${product._id}/edit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Editar producto</a>
           </div>
@@ -259,7 +259,7 @@ const getDashboard1 = (products) => {
   return `<div class="containerDash">${productsCard.join('')}</div>`;
 }
 
-
+*/
 
 
 //Funcion auxilar para pintar la card de una sola card, para cuando llamemos por el id
@@ -281,54 +281,53 @@ const getProductCard = (product) => {
 
 const formNew =()=>{
  let form =`
-            <div class="container">
-                <h2>Subir Nuevo Producto</h2>
-                <form action="/dashboard" method="POST">
-                    <div class="mb-3">
-                        <label for="nombre" class="form-label">Nombre</label>
-                        <input type="text" class="form-control" id="nombre" name="nombre" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="descripcion" class="form-label">Descripción</label>
-                        <textarea class="form-control" id="descripcion" name="descripcion" rows="3" required></textarea>
-                    </div>
-                    <div class="mb-3">
-                        <label for="imagen" class="form-label">URL de la Imagen</label>
-                        <input type="url" class="form-control" id="imagen" name="imagen" required>
-                    </div>
-                    <div class="mb-3">
-                        <label for="categoria" class="form-label">Categoría</label>
-                        <select class="form-select" id="categoria" name="categoria" required>
-                            <option value="Camisetas">Camisetas</option>
-                            <option value="Pantalones">Pantalones</option>
-                            <option value="Zapatos">Zapatos</option>
-                            <option value="Accesorios">Accesorios</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="talla" class="form-label">Talla</label>
-                        <select class="form-select" id="talla" name="talla" required>
-                            <option value="XS">XS</option>
-                            <option value="S">S</option>
-                            <option value="M">M</option>
-                            <option value="L">L</option>
-                            <option value="XL">XL</option>
-                        </select>
-                    </div>
-                    <div class="mb-3">
-                        <label for="precio" class="form-label">Precio</label>
-                        <input type="number" class="form-control" id="precio" name="precio" required>
-                    </div>
-                    <button type="submit" class="btn btn-primary">Subir Producto</button>
-                </form>
-            </div>
-        `;
+ <div class="containerForm" >
+<h3> Crear producto</h3>
+<div>
+ <form class="max-w-sm mx-auto" form action="/products" method="POST">
+ <div class="mb-5">
+   <label for="Nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
+   <input type="Nombre" id="Nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+ </div>
+ <div class="mb-5">
+ <label for="descripcion" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">descripcion</label>
+ <textarea id="descripcion" rows="2" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Descripcion del producto"></textarea>
+</div>
+<div class="mb-5">
+    <label for="imagen" class="form-label">URL de la Imagen</label>
+    <input type="url" class="form-control" id="imagen" name="imagen" required>
+</div>
+<div class="mb-5">
+  <label for="categoria" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Categoria</label>
+  <select id="categoria" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
+  <option value="Camisetas">Camisetas</option>
+  <option value="Pantalones">Pantalones</option>
+  <option value="Zapatos">Zapatos</option>
+  <option value="Accesorios">Accesorios</option>
+</select>
+<div class="mb-5">
+<label for="talla" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Talla</label>
+  <select id="talla" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>               <option value="XS">XS</option>
+    <option value="S">S</option>
+    <option value="M">M</option>
+    <option value="L">L</option>
+    <option value="XL">XL</option>
+  </select>
+  </div>
+<div class="mb-5">
+   <label for="precio" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Precio</label>
+   <input type="precio" id="precio" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
+ </div>
+ <button type="submit" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Registrar nuevo producto</button>
+ </form>
+ </div>
+ </div>`;
    return form
 };
 
 const EditProductForm = (product) => {
   return `
-      <div class="container">
+      <div class="formcontainer">
           <h2>Editar Producto</h2>
           <form action="/dashboard/${product._id}" method="POST">
               <div class="mb-3">
@@ -382,7 +381,7 @@ module.exports={
     footer,
     createHomeBody,
     getProductCards,
-    getDashboard1,
+    //getDashboard1,
     getProductCard,
     formNew,
     EditProductForm 

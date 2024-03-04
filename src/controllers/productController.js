@@ -1,5 +1,5 @@
 //importamos las distintas funciones auxiliares que hemos creado y el modelo
-/*const Product=require('../models/Product')
+const Product=require('../models/Product')
 const { baseHtml,getNavBar,footer,createHomeBody,getProductCards,getDashboard1,getProductCard,formNew,EditProductForm} =require('./auxilarControllers')
 
 //Funcion para mostrar la la home de la tienda 
@@ -14,34 +14,25 @@ const showHome = async (req, res) => {
 1. Buscamos el/los productos o las categorias que querramos mostrar
 2. LLamamos a la funcion auxiliar para que nos pinte ese/s productos o categorias
 3. Añadimos la base del html, la barra de navegacion, el resultado de la funcion anterior y el footer
-4. Lanzamos un error en caso de que algo no funcione
-/
+4. Lanzamos un error en caso de que algo no funciones
+*/
   
 //Funcion que nos devuelve pintados todos los productos
 const showProducts = async (req, res) => {
   try {
-      const products = await Product.find();
-      
-      if (!products || products.length === 0) {
-          return res.status(404).send('Productos no encontrados');
-      }
-
-      if (req.path === '/products') {
-         const productCards = getProductCards(products);
-      const html = baseHtml() + getNavBar(req) + productCards + footer();
-      return res.send(html);
-      }
-const dashboardCards = getDashboard1(products);
-          const html2 = baseHtml() + getNavBar(req) + dashboardCards + footer();
-          res.send(html2);
-     
+    const products = await Product.find();
+    if (!products || products.length === 0) {
+        return res.status(404).send('Productos no encontrados');
+    }
+    const productCards = getProductCards(products);
+    const html = baseHtml() + getNavBar(req) + productCards + footer();
+    return res.send(html);
+  
   } catch (error) {
       console.error(error);
       res.status(500).send('Error al obtener los productos');
   }
 };
-
-
 
 
 //Funcion para obtener todos los productos filtrados por categorias   
@@ -51,7 +42,7 @@ const showProductsByCategory = async (req, res) => {
   try {
   // Buscar todos los productos que esten dentro de esa categoria y pintamos el HTML
     const products = await Product.find({ categoria: category });
-    const productCards = getDashboard1(products);
+    const productCards = getProductCards(products);
     const html = baseHtml() + getNavBar(req) + productCards + footer();
     res.send(html);
   } catch (error) {
@@ -59,7 +50,7 @@ const showProductsByCategory = async (req, res) => {
           res.status(500).json({ message: error.message });
       }
 };
-//Funcion que nos devuelve pintados todos los productos en el dahsboard
+/*Funcion que nos devuelve pintados todos los productos en el dahsboard
 const showDashboard= async (req, res) => {
   try {
     //Buscamos en la base de datos todos los productos
@@ -73,7 +64,7 @@ const showDashboard= async (req, res) => {
       res.status(500).send('Error al obtener los productos');
     }
   };
-    
+  */  
 //Creamos la funcion para que nos devuelve pintado un producto buscado por su Id
 const showProductById = async (req, res) => {
 //En este caso primero obtenemos el Id del producto
@@ -94,16 +85,16 @@ const showProductById = async (req, res) => {
     res.status(500).send('Error al obtener el producto');
   }
 };
-/Creamos la funcion para crear nuevos productos
+/*Creamos la funcion para crear nuevos productos
 en este caso no vamos a requerir ninguna caracteristica de los productos que tenemos
-ya que servira para crear nuevos, por eso esta funcion solo nos pintara el html con el formulario*
+ya que servira para crear nuevos, por eso esta funcion solo nos pintara el html con el formulario*/
 const showNewProduct = (req, res) => {
     // Añadimos la base del HTLM, el navBar, el formulario para crear nuevos productos y el footer
     const html = baseHtml() + getNavBar(req) + formNew() + footer();
     res.send(html);
 };
 
-// Controlador para crear un nuevo producto
+//Controlador para crear un nuevo producto
 const createProduct = async (req, res) => {
   try {
       // Extraemos  los datos del formulario(body)
@@ -128,7 +119,7 @@ const createProduct = async (req, res) => {
 };
 
 
-// Controlador para obtener el formulario de edición de un producto
+/* Controlador para obtener el formulario de edición de un producto
 const showEditProduct = async (req, res) => {
     const productId = req.params.productId;
     try {
@@ -176,97 +167,11 @@ const updateProduct = async (req, res) => {
     }
 };
 
-// Controlador para eliminar un producto
-const deleteProduct = async (req, res) => {
-    const productId = req.params.productId;
 
-    try {
-        // Buscar el producto por su ID y eliminarlo de la base de datos
-        const deletedProduct = await Product.findByIdAndDelete(productId);
-
-        if (!deletedProduct) {
-            return res.status(404).send('Producto no encontrado');
-        }
-
-        // Redirigir a la vista de todos los productos del dashboard
-        res.redirect('/dashboard');
-    } catch (error) {
-        console.error(error);
-        res.status(500).send('Error al eliminar el producto');
-    }
-};
+*/
 
 
 
-//Exportamos los distintos controladores
-module.exports={
-  showHome,
-  showProducts,
-  showDashboard,
-  showProductById,
-  showProductsByCategory,
-  showNewProduct,
-  createProduct,
-  showEditProduct,
-  updateProduct,
-  deleteProduct
-}
-+Ç*/
-
-const Product = require('../models/Product');
-
-// Funciones auxiliares para generar HTML
-function getProductCards(products) {
-    let productCards = '';
-    products.forEach(product => {
-        productCards += `
-            <div class="product-card">
-                <h2>${product.nombre}</h2>
-                <p>${product.descripcion}</p>
-                <p>Categoría: ${product.categoria}</p>
-                <p>Talla: ${product.talla}</p>
-                <p>Precio: ${product.precio}</p>
-                <!-- Agrega más detalles si es necesario -->
-                <a href="/products/${product._id}">Ver detalles</a>
-            </div>
-        `;
-    });
-    return productCards;
-}
-
-// Controladores
-const showProducts = async (req, res) => {
-    try {
-        const products = await Product.find();
-        const productCards = getProductCards(products);
-        const html = baseHtml() + getNavBar() + productCards;
-        res.send(html);
-    } catch (error) {
-        res.status(500).send("Error al obtener los productos");
-    }
-};
-
-const showProductById = async (req, res) => {
-    try {
-        const productId = req.params.productId;
-        const product = await Product.findById(productId);
-        if (!product) {
-            return res.status(404).send("Producto no encontrado");
-        }
-        const productHtml = `
-            <h2>${product.nombre}</h2>
-            <p>${product.descripcion}</p>
-            <p>Categoría: ${product.categoria}</p>
-            <p>Talla: ${product.talla}</p>
-            <p>Precio: ${product.precio}</p>
-            <!-- Agrega más detalles si es necesario -->
-        `;
-        const html = baseHtml() + getNavBar() + productHtml;
-        res.send(html);
-    } catch (error) {
-        res.status(500).send("Error al obtener el producto");
-    }
-};
 
 const showDashboard = async (req, res) => {
     try {
@@ -279,20 +184,7 @@ const showDashboard = async (req, res) => {
     }
 };
 
-const showNewProduct = (req, res) => {
-    const html = baseHtml() + getNavBar() + '<h2>Formulario para subir un nuevo producto</h2>';
-    res.send(html);
-};
 
-const createProduct = async (req, res) => {
-    try {
-        const newProduct = new Product(req.body);
-        await newProduct.save();
-        res.redirect(`/products/${newProduct._id}`);
-    } catch (error) {
-        res.status(500).send("Error al crear el producto");
-    }
-};
 
 const showEditProduct = async (req, res) => {
     try {
@@ -318,21 +210,26 @@ const updateProduct = async (req, res) => {
     }
 };
 
+//Controlador para eliminar un producto
 const deleteProduct = async (req, res) => {
     try {
         const productId = req.params.productId;
         await Product.findByIdAndDelete(productId);
-        res.redirect('/dashboard');
+        res.redirect('/products');
     } catch (error) {
         res.status(500).send("Error al eliminar el producto");
     }
 };
 
+
+
 // Exportamos los controladores
 module.exports = {
+    showHome,
     showProducts,
     showProductById,
     showDashboard,
+    showProductsByCategory,
     showNewProduct,
     createProduct,
     showEditProduct,
