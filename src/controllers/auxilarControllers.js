@@ -225,8 +225,8 @@ const createHomeBody = () => {
     return productsCardq;
   }
   
-/*Funcion auxilar que nos ayuda a pintar las cartas de todos los productos
-const getDashboard1 = (products) => {
+//Funcion auxilar que nos ayuda a pintar las cartas de todos los productos
+const getDashboard = (products) => {
   const productsCard = products.map(product => {
     return `
       <div class="w-full max-w-sm bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
@@ -259,15 +259,12 @@ const getDashboard1 = (products) => {
   return `<div class="containerDash">${productsCard.join('')}</div>`;
 }
 
-*/
-
-
 //Funcion auxilar para pintar la card de una sola card, para cuando llamemos por el id
 const getProductCard = (product) => {
   const html = `
   <div class="card">
     <a href="#" class="flex flex-col items-center bg-white border border-gray-200 rounded-lg shadow md:flex-row md:max-w-xl hover:bg-gray-100 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-700">
-      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="/${product.imagen}" alt="${product.imagen}">
+      <img class="object-cover w-full rounded-t-lg h-96 md:h-auto md:w-48 md:rounded-none md:rounded-s-lg" src="${product.imagen}" alt="${product.imagen}">
       <div class="flex flex-col justify-between p-4 leading-normal">
         <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">${product.nombre}</h5>
         <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">${product.descripcion}</p>
@@ -284,7 +281,7 @@ const formNew =()=>{
  <div class="containerForm" >
 <h3> Crear producto</h3>
 <div>
- <form class="max-w-sm mx-auto" form action="/products" method="POST">
+ <form class="max-w-sm mx-auto" action="/dashboard" method="POST">
  <div class="mb-5">
    <label for="Nombre" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nombre</label>
    <input type="Nombre" id="Nombre" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
@@ -381,7 +378,7 @@ module.exports={
     footer,
     createHomeBody,
     getProductCards,
-    //getDashboard1,
+    getDashboard,
     getProductCard,
     formNew,
     EditProductForm 

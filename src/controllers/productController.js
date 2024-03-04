@@ -1,6 +1,6 @@
 //importamos las distintas funciones auxiliares que hemos creado y el modelo
 const Product=require('../models/Product')
-const { baseHtml,getNavBar,footer,createHomeBody,getProductCards,getDashboard1,getProductCard,formNew,EditProductForm} =require('./auxilarControllers')
+const { baseHtml,getNavBar,footer,createHomeBody,getProductCards,getDashboard,getProductCard,formNew,EditProductForm} =require('./auxilarControllers')
 
 //Funcion para mostrar la la home de la tienda 
 const showHome = async (req, res) => {
@@ -50,7 +50,7 @@ const showProductsByCategory = async (req, res) => {
           res.status(500).json({ message: error.message });
       }
 };
-/*Funcion que nos devuelve pintados todos los productos en el dahsboard
+//Funcion que nos devuelve pintados todos los productos en el dahsboard
 const showDashboard= async (req, res) => {
   try {
     //Buscamos en la base de datos todos los productos
@@ -59,12 +59,13 @@ const showDashboard= async (req, res) => {
       console.log(dashboardCards);
       const html = baseHtml() + getNavBar(req) + dashboardCards + footer();
       console.log(html)
-      res.send(html);
+      res.json(productos);
+      res
     } catch (error) {
       res.status(500).send('Error al obtener los productos');
     }
   };
-  */  
+   
 //Creamos la funcion para que nos devuelve pintado un producto buscado por su Id
 const showProductById = async (req, res) => {
 //En este caso primero obtenemos el Id del producto
@@ -100,7 +101,7 @@ const createProduct = async (req, res) => {
       // Extraemos  los datos del formulario(body)
       const { nombre, descripcion, imagen, categoria, talla, precio} = req.body;
       // Crea un nuevo objeto de Producto con los datos proporcionados
-      const newProduct = Product.create({
+      const newProduct =await Product.create({
           nombre,
           descripcion,
           imagen,
@@ -109,9 +110,9 @@ const createProduct = async (req, res) => {
           precio
       });
       // Guardamos el producto en nuestra base de datos
-      await newProduct.save();
+      const nuevoID = newProduct._id
+        return res.redirect(`/dashboard/${nuevoID}`)
       //NOs rediriguimos a la vista de detalle del producto recién creado
-      res.redirect(`/dashboard/${newProduct._id}`);
   } catch (error) {
       // Lanzamos un error en caso de que haya algun problema a la hora de crear el producto
       res.status(500).send('Error al crear el producto');
@@ -169,20 +170,6 @@ const updateProduct = async (req, res) => {
 
 
 */
-
-
-
-
-const showDashboard = async (req, res) => {
-    try {
-        const products = await Product.find();
-        const productCards = getProductCards(products);
-        const html = baseHtml() + getNavBar(true) + productCards;
-        res.send(html);
-    } catch (error) {
-        res.status(500).send("Error al obtener los productos del dashboard");
-    }
-};
 
 
 
