@@ -73,12 +73,12 @@ async showProducts(req, res){
        
         if(req.path ==='/dashboard'){
 
-"""Si estamos en la ruta _ _/dashboard_ _ pasamos por los productos por la funcion auxiliar _ _getDashboard_ _ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar"""
+# Si estamos en la ruta _ _/dashboard_ _ pasamos por los productos por la funcion auxiliar _ _getDashboard_ _ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar#
 
           let DashboardCard = getDashboard(products)
 
           let htmlDashboard = baseHtml()+ getNavBar(req) +  DashboardCard + footer();
-""" Añadimos la cabecera del documento HTML, la barra de navegacion, las cartas de los productos y el footer y con eso revolvemos la peticion"""
+# Añadimos la cabecera del documento HTML, la barra de navegacion, las cartas de los productos y el footer y con eso revolvemos la peticion"""
 
           res.send(htmlDashboard)
         }else{
