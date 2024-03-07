@@ -60,8 +60,8 @@ productSchema = new mongoose.Schema({
 
 ## rutas y controladores
 
-Las rutas __ /products__ y__/dashboard__  con el metodo:
-- __GET __ : tiene el controlador __showProducts__  que nos devolvera  todos los productos.
+Las rutas _ _ /products__ y__/dashboard__  con el metodo:
+- _ _GET _ _ : tiene el controlador _ _showProducts__  que nos devolvera  todos los productos.
 
 ```async showProducts(req, res){
       try {
@@ -72,7 +72,7 @@ Las rutas __ /products__ y__/dashboard__  con el metodo:
        
         if(req.path ==='/dashboard'){
 
-        """Si estamos en la ruta __/dashboard__ pasamos por los productos por la funcion auxiliar __getDashboard__ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar"""
+        """Si estamos en la ruta _ _/dashboard_ _ pasamos por los productos por la funcion auxiliar _ _getDashboard_ _ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar"""
           let DashboardCard = getDashboard(products)
 
           let htmlDashboard = baseHtml()+ getNavBar(req) +  DashboardCard + footer();
@@ -80,7 +80,7 @@ Las rutas __ /products__ y__/dashboard__  con el metodo:
           res.send(htmlDashboard)
         }else{
           let productsCard = getProductCards(products)
-          """ la 
+          """ la función _ _getProductCard_ _n 
           let htmlproducts = baseHtml()+ getNavBar(req) +  productsCard + footer();
           res.send(htmlproducts)
         }
