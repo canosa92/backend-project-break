@@ -1,16 +1,22 @@
-const express = require ('express');
-const routes = express.Router();
-const productControllers = require('../controllers/productController');
+const express= require('express')
+const routes = express.Router()
+const ProductController = require ('../controllers/productController')
 
-routes.get('/', productControllers.showHome);  
-routes.get('/products', productControllers.showProducts);
-routes.get('/products/:productId', productControllers.showProductById);
-routes.get('/:categoria', productControllers.showProductsByCategory);
-routes.get('/dashboard',productControllers.showDashboard);
-routes.get('/dashboard/new',productControllers.showNewProduct);
-routes.post('/dashboard',productControllers.createProduct);
-routes.get('/products/:productId/edit',productControllers.showEditProduct);
-routes.put('/dashboard/:productId', productControllers.updateProduct);
-routes.get('/dashboard/:productId/delete',productControllers.deleteProduct);
+routes.get('/',ProductController.homeController)
+routes.get('/products',ProductController.showProducts);
+routes.get('/dashboard',ProductController.showProducts);
+
+routes.get('/products/:productId',ProductController.showProductByIdl);
+routes.get('/:categoria',ProductController.showProductsByCategory);
+
+routes.get('/dashboard/new',ProductController.showNewProduct);
+routes.post('/dashboard',ProductController.createProduct);
+
+routes.get('/dashboard/:productId',ProductController.showProductByIdl);
+routes.get('/dashboard/:productId/edit',ProductController.showEditProduct);
+routes.post('/dashboard/:productId',ProductController.updateProduct);
+routes.get('/dashboard/:productId/delete',ProductController.deleteProduct);
+
+
 
 module.exports = routes;
