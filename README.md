@@ -1,113 +1,98 @@
-# Tienda de ropa
+# Tienda de ropa con Mongo y Node
 
-Montarmos una tienda de ropa con un catálozgo de productos y un dashboard para el administrador. Los productos se guardan en una base de datos de mongo en Atlas. Se uso como referencia el pdf [web_ejemplo.pdf](web_ejemplo.pdf) que contiene un ejemplo de cómo podría ser la interfaz de la tienda y el dashboard.
+Montarmos una tienda de ropa con un catálogo de productos y un dashboard para el administrador, en el que pude editar o eliminar los productos. Los productos se guardan en una base de datos de mongo en Atlas. 
 
 ## Índice
 
-  - [Estructura de archivos](#estructura-de-archivos)
-  - [Creación de base de datos](#creación-de-base-de-datos)
-  - [Creación del servidor](#creación-del-servidor)
-  - [Creación de modelos](#creación-de-modelos)
-  - [Creación de rutas](#creación-de-rutas)
-  - [Creación de controladores](#creación-de-controladores)
+  - [Modelo de producto](#creación-de-modelos)
+  - [Rutas y sus controladores](#rutas-y-controladores)
   - [Despliegue](#despliegue)
   - [Documentación](#documentación)
   - [Bonus 1 - Tests](#bonus-1---tests)
   - [Bonus 2 - Autenticación con Firebase](#bonus-2---autenticación-con-firebase)
   - [Bonus 3 - API y documentación con Swagger](#bonus-3---api-y-documentación-con-swagger)
-  - [Recursos](#recursos)
-
-## Estructura de archivos
-
-Vamos a crear la estructura de archivos que vamos a necesitar para el proyecto. 
-
-```
-.
-├── src
-│   ├── config
-│   │   ├── db.js
-│   │   └── firebase.js (BONUS)
-│   ├── controllers
-│   │   ├── productController.js
-│   │   └──authController.js (BONUS)
-│   ├── models
-│   │   └── Product.js
-│   ├── routes
-│   │   └── productRoutes.js
-│   │   └── authRoutes.js (BONUS)
-│   ├── middlewares (BONUS)
-│   │   └── authMiddleware.js
-│   └── index.js
-├── test (BONUS)
-│   └── productController.test.js
-├── public
-│   ├── styles.css
-│   └── images (OPCIONAL)
-├── .env
-└── package.json
-
-```
-
-### Características de los archivos
-
-- `config/db.js`: Archivo que contendrá la configuración de la base de datos. Deberá conectarse a la base de datos de mongo en Atlas.
-- `controllers/productController.js`: Archivo que contendrá la lógica para manejar las solicitudes CRUD de los productos. Devolverá las respuestas en formato HTML.
-- `models/Product.js`: Archivo que contendrá la definición del esquema del producto utilizando Mongoose.
-- `routes/productRoutes.js`: Archivo que contendrá la definición de las rutas CRUD para los productos. Este llama a los métodos del controlador.
-- `index.js`: Archivo principal que iniciará el servidor Express. Importa las rutas y las usa. También tiene que estar configurado para servir archivos estáticos y para leer el body de las peticiones de formularios.
-- `public/styles.css`: Archivo que contendrá los estilos de la aplicación (recomendable).
-- `public/images`: Carpeta que contendrá las imágenes de los productos (opcional).Se puede evitar si se usan urls externas para las imágenes.
-- `.env`: Archivo que contendrá las variables de entorno. En este caso, la uri de la base de datos de Atlas o el puerto de la aplicación. Más adelante añadiremos más variables de entorno, como la palabra secreta para la sesión.
-- `package.json`: Archivo que contendrá las dependencias del proyecto. Crearemos un script para iniciar el servidor con node y otro para iniciar el servidor con nodemon.("start": "node src/index.js", "dev": "nodemon src/index.js").
-
-**BONUS**
-- `config/firebase.js`: Archivo que contendrá la configuración de firebase. Deberá inicializar la conexión con firebase.
-- `controllers/authController.js`: Archivo que contendrá la lógica para manejar las solicitudes de autenticación. Devolverá las respuestas en formato HTML.
-- `routes/authRoutes.js`: Archivo que contendrá la definición de las rutas para la autenticación. Este llama a los métodos del controlador.
-- `middlewares/authMiddleware.js`: Archivo que contendrá el middleware para comprobar si el usuario está autenticado. Este buscará la sesión del usuario y, si no la encuentra, redirigirá al formulario de login.
-
-## Creacíon de base de datos
-
-Vamos a crear la base de datos en Atlas. Creamos un nuevo proyecto y lo desplegamos.
-
-Una vez creada la base de datos, copiamos la uri y la guardamos en el archivo .env 
-```
-MONGO_URI=<uri_bd_atlas>
-```
-
-## Creación del servidor
-
-Vamos a crear el servidor con express. El servidor devolverá las vistas usando template literals. Para interfaces más complejas, se podría usar un motor de plantillas como pug. También necesitaremos leer el body de las peticiones tipo post. Como trabajaremos con formularios html, necesitaremos el middleware `express.urlencoded` para leer el body de las peticiones.
-
-Para poder añadir estilos, imágenes, etc. necesitaremos el middleware `express.static` para servir archivos estáticos. En nuestro caso, serviremos los archivos estáticos desde la carpeta `public`.
-
-El puerto en el que escuchará el servidor lo cargaremos desde el archivo .env usando `dotenv`.
-
-
-Creamos el archivo `index.js` en la carpeta `src` y añadimos el código necesario para crear el servidor. 
 
 ## Creación de modelo
 
-Vamos a crear el modelo de producto. El modelo de producto tendrá los siguientes campos:
+El modelo de los distintos productos es el siguiente:
 
-- Nombre
-- Descripción
-- Imagen
-- Categoría
-- Talla
-- Precio
+```
+productSchema = new mongoose.Schema({
 
-La categoría será un string que podrá ser "Camisetas", "Pantalones", "Zapatos", "Accesorios".
+  """Tanto el nombre como la descripcion y la imagen de los productos
+      son de tipo String y tendran que estar cubierto."""
 
-La talla será un string que podrá ser "XS", "S", "M", "L", "XL".
+    nombre: {
+        type: String,
+        required: true
+    },
+    descripcion: {
+        type: String,
+        required: true
+    },
+    imagen: {
+        type: String,
+        required: true
+    },
+
+     """La categoria también sera de tipo string y será requerido, pero en este caso solo podra ser una de estas cuatro opciones: Camisetas, Pantalones, Zapatos o Accesorios """
+
+    categoria: {
+        type: String,
+        enum: ['Camisetas', 'Pantalones', 'Zapatos', 'Accesorios'],
+        required: true
+    },
+
+     """ En el caso de la talla las opciones serian 'XS', 'S', 'M', 'L' o 'XL'"""
+
+    talla: {
+        type: String,
+        enum: ['XS', 'S', 'M', 'L', 'XL'],
+        required: true
+    },
+    """El precio en cambio sera un numero"""
+    precio: {
+        type: Number,
+        required: true
+    }
+});
+```
+
+## rutas y controladores
+
+Las rutas __ /products__ y__/dashboard__  con el metodo:
+- __GET __ : tiene el controlador __showProducts__  que nos devolvera  todos los productos.
+
+```async showProducts(req, res){
+      try {
+        """hacemos una busqueda a nuestro base de datos que nos devolvera
+        todos los productos  guardados en ella."""
+        const products = await Product.find();
+
+       
+        if(req.path ==='/dashboard'){
+
+        """Si estamos en la ruta __/dashboard__ pasamos por los productos por la funcion auxiliar __getDashboard__ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar"""
+          let DashboardCard = getDashboard(products)
+
+          let htmlDashboard = baseHtml()+ getNavBar(req) +  DashboardCard + footer();
+        """ Añadimos la cabecera del documento HTML, la barra de navegacion, las cartas de los productos y el footer y con eso revolvemos la peticion  """
+          res.send(htmlDashboard)
+        }else{
+          let productsCard = getProductCards(products)
+          """ la 
+          let htmlproducts = baseHtml()+ getNavBar(req) +  productsCard + footer();
+          res.send(htmlproducts)
+        }
+      } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Error al obtener los productos' });
+      }
+    },
+    ```
 
 
-## Creación de rutas
 
-Vamos a crear las rutas CRUD para los productos. Al usar formularios html, las rutas serán de tipo GET y POST.
- Las rutas deberían tener una estructura similar a esta:
-
-- GET /products: Devuelve todos los productos. Cada producto tendrá un enlace a su página de detalle.
 - GET /products/:productId: Devuelve el detalle de un producto.
 - GET /dashboard: Devuelve el dashboard del administrador. En el dashboard aparecerán todos los artículos que se hayan subido. Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
 - GET /dashboard/new: Devuelve el formulario para subir un artículo nuevo.
