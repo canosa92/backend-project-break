@@ -60,13 +60,13 @@ productSchema = new mongoose.Schema({
 
 ## rutas y controladores
 
-Las rutas _ _ /products__ y__/dashboard__  con el metodo:
-- _ _GET _ _ : tiene el controlador _ _showProducts__  que nos devolvera  todos los productos.
+Las rutas **/products** y **/dashboard**  con el metodo:
+- **GET** : tiene el controlador *showProducts* que nos devolvera  todos los productos.
 
 ```async showProducts(req, res){
       try {
-        """hacemos una busqueda a nuestro base de datos que nos devolvera
-        todos los productos  guardados en ella."""
+        >hacemos una busqueda a nuestro base de datos que nos devolvera
+        todos los productos  guardados en ella.<
         const products = await Product.find();
 
        
