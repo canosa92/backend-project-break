@@ -19,8 +19,8 @@ El modelo de los distintos productos es el siguiente:
 ```
 productSchema = new mongoose.Schema({
 
-  """Tanto el nombre como la descripcion y la imagen de los productos
-      son de tipo String y tendran que estar cubierto."""
+#Tanto el nombre como la descripcion y la imagen de los productos
+      son de tipo String y tendran que estar cubierto.#
 
     nombre: {
         type: String,
@@ -35,7 +35,7 @@ productSchema = new mongoose.Schema({
         required: true
     },
 
-     """La categoria también sera de tipo string y será requerido, pero en este caso solo podra ser una de estas cuatro opciones: Camisetas, Pantalones, Zapatos o Accesorios """
+#La categoria también sera de tipo string y será requerido, pero en este caso solo podra ser una de estas cuatro opciones: Camisetas, Pantalones, Zapatos o Accesorios#
 
     categoria: {
         type: String,
@@ -43,7 +43,7 @@ productSchema = new mongoose.Schema({
         required: true
     },
 
-     """ En el caso de la talla las opciones serian 'XS', 'S', 'M', 'L' o 'XL'"""
+# En el caso de la talla las opciones serian 'XS', 'S', 'M', 'L' o 'XL'#
 
     talla: {
         type: String,
@@ -64,40 +64,66 @@ Las rutas **/products** y **/dashboard**  con el metodo:
 - **GET** : tiene el controlador *showProducts* que nos devolvera  todos los productos.
 
 ```
-async showProducts(req, res){
+-async showProducts(req, res){
       try {
-        >hacemos una busqueda a nuestro base de datos que nos devolvera
-        todos los productos  guardados en ella.<git 
+        #hacemos una busqueda a nuestro base de datos que nos devolvera
+        todos los productos  guardados en ella.#
         const products = await Product.find();
 
        
         if(req.path ==='/dashboard'){
 
-# Si estamos en la ruta _ _/dashboard_ _ pasamos por los productos por la funcion auxiliar _ _getDashboard_ _ que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar#
+# Si estamos en la ruta **/dashboard** pasamos por los productos por la funcion auxiliar *getDashboard* que no devuelve esos productos pintados en una carta  con las opciones de eliminar y editar#
 
           let DashboardCard = getDashboard(products)
 
           let htmlDashboard = baseHtml()+ getNavBar(req) +  DashboardCard + footer();
-# Añadimos la cabecera del documento HTML, la barra de navegacion, las cartas de los productos y el footer y con eso revolvemos la peticion"""
+"> Añadimos la cabecera del documento HTML, la barra de navegacion, las cartas de los productos y el footer y con eso revolvemos la peticion"
 
           res.send(htmlDashboard)
         }else{
           let productsCard = getProductCards(products)
-          """ la función _ _getProductCard_ _n 
+#la función *getProductCard* nos devuelve los productos dentros de unas cartas pero en este caso no te dara la opcion de eliminar ni de editar# 
+
           let htmlproducts = baseHtml()+ getNavBar(req) +  productsCard + footer();
           res.send(htmlproducts)
         }
       } catch (error) {
+#Lanzamos un error en caso de que no se puedan obtener los productos#
         console.error(error);
         res.status(500).json({ error: 'Error al obtener los productos' });
       }
     },
 ```
+Las rutas **/products/:productId** y **/dashboard/:productId**  con el metodo:
+- **GET** : tiene el controlador  *showProductByIdl*  que nos devuelve el detalle de un solo producto buscado por su id.
+
+```
+async showProductByIdl(req, res){
+
+    const productId = req.params.productId;
+    try {
+      const product = await Product.findById(productId);
+      if (!product) {
+        return res.status(404).json({ error: 'Producto no encontrado' });
+      }
+      if(req.originalUrl.includes('dashboard')){
+        const productCard= getProductCardDashboard(product)
+        let htmlproduct = baseHtml()+ getNavBar(req) +  productCard + footer();
+        res.send(htmlproduct);
+      }else {
+        const productCard= getProductCard (product)
+        let htmlproduct = baseHtml()+ getNavBar(req) +  productCard + footer();
+        res.send(htmlproduct);
+       } 
+    } catch (error) {
+      console.error(error);
+      res.status(500).json({ error: 'Error al obtener el detalle del producto' });
+    }
+  },
+```
 
 
-
-- GET /products/:productId: Devuelve el detalle de un producto.
-- GET /dashboard: Devuelve el dashboard del administrador. En el dashboard aparecerán todos los artículos que se hayan subido. Si clickamos en uno de ellos nos llevará a su página para poder actualizarlo o eliminarlo.
 - GET /dashboard/new: Devuelve el formulario para subir un artículo nuevo.
 - POST /dashboard: Crea un nuevo producto.
 - GET /dashboard/:productId: Devuelve el detalle de un producto en el dashboard.
