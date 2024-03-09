@@ -75,9 +75,8 @@ const ProductController = {
       res.send(html);
     },
     
-async createProduct(req, res){
-
-  const { nombre, descripcion, categoria,imagen, talla, precio } = req.body
+  async createProduct(req, res){
+    const { nombre, descripcion, categoria,imagen, talla, precio } = req.body
     const newProdu = {
       nombre:nombre,
       descripcion:descripcion,
@@ -87,35 +86,30 @@ async createProduct(req, res){
       precio:precio
     }
     try {
-        const newProduct = await Product.create(newProdu)
-        const newId = newProduct._id
-        return res.redirect(`/dashboard/${newId}`)
-    
-  }
+      const newProduct = await Product.create(newProdu)
+      const newId = newProduct._id
+      return res.redirect(`/dashboard/${newId}`)
+    }
   catch(error) {
       res.status(500).send({message: 'Something went wrong!', error})
-  }
-},
+    }
+  },
 
-async showEditProduct(req, res){
-  try {
+  async showEditProduct(req, res){
+    try {
       const productId = req.params.productId;
       const product = await Product.findById(productId);
-      console.log(product)
-    
       let htmlform = baseHtml() + getNavBar(req) + formEdit(product) + footer();
-      res.send(htmlform);    
-      
-  } catch (error) {
+      res.send(htmlform);     
+    }catch (error) {
       res.status(500).send("Error al obtener el producto para editar");
-  }
-},
+    }
+  },
 
-async updateProduct(req, res){
-  try {
+  async updateProduct(req, res){
+    try {
       const productId = req.params.productId;
       const { nombre, descripcion, imagen, categoria, talla, precio } = req.body
-      console.log(productId)
       const updatedProduct = await Product.findByIdAndUpdate(productId, {
         nombre,
         descripcion,
@@ -123,25 +117,22 @@ async updateProduct(req, res){
         categoria,
         talla,
         precio
-    }, { new: true });
-      console.log(updatedProduct)
+      }, { new: true });
       res.redirect(`/dashboard/${productId}`);
-  } catch (error) {
+    } catch (error) {
       res.status(500).send("Error al actualizar el producto");
-  }
-},
-async deleteProduct(req, res){
-  try {
-      const productId = req.params.productId;
-      
-      await Product.findByIdAndDelete(productId);
-      console.log(productId);
-      res.redirect('/dashboard');
-  } catch (error) {
-      res.status(500).send("Error al eliminar el producto");
-  }
-},
+    }
+  },
 
+  async deleteProduct(req, res){
+    try {
+      const productId = req.params.productId;    
+      await Product.findByIdAndDelete(productId);
+      res.redirect('/dashboard');
+    } catch (error) {
+      res.status(500).send("Error al eliminar el producto");
+    }
+  },
 
 }
 
