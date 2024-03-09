@@ -6,12 +6,10 @@
 
   ## Índice
 
-    - [Modelo de producto](#creación-de-modelos)
-    - [Rutas y sus controladores](#rutas-y-controladores)
-    - [Despliegue](#despliegue)
-    - [Bonus 1 - Tests](#bonus-1---tests)
-    - [Bonus 2 - Autenticación con Firebase](#bonus-2---autenticación-con-firebase)
-    - [Bonus 3 - API y documentación con Swagger](#bonus-3---api-y-documentación-con-swagger)
+- [Modelo de producto](#creación-de-modelos)
+- [Rutas y sus controladores](#rutas-y-controladores)
+- [Api](#Api)
+- [Despliegue](#despliegue)
 
   ## Creación de modelo
 
@@ -154,7 +152,7 @@ Recibirá un formulario completado por defecto con los valores actuales del prod
 - La ruta **/dashboard/:productId** con el metodo:
   - **POST **: Actualiza un producto.
 
-  ´´´´
+  ´´´
     async updateProduct(req, res){
     try {
       const productId = req.params.productId;
@@ -172,7 +170,7 @@ Recibirá un formulario completado por defecto con los valores actuales del prod
       res.status(500).send("Error al actualizar el producto");
     }
   },
-  ´´´´
+  ´´´
 Buscamos el producto en nuestra base de datos por su ID y cambiamos los parametros por los del formulario anterior.
 Nos diriguimos a */dashboard/${productId}* para ver la información completa del producto con los datos cambiados.
 
@@ -190,7 +188,11 @@ Nos diriguimos a */dashboard/${productId}* para ver la información completa del
     }
   },
  ```
- Obtenemos el ID del productos, los buscamos en la base de datos y lo eliminamos.Nos redireccionamos a /dashboard para ver como el producto esta eliminado.
+ Obtenemos el ID del productos, los buscamos en la base de datos y lo eliminamos.Nos redireccionamos a */dashboard* para ver como el producto esta eliminado.
+
+### Api
+
+
 
 
 ## Despliegue

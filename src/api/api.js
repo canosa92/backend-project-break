@@ -2,16 +2,6 @@ const Product = require('../models/Product');
 
 const ApiController = {
     
-    async homeController(req, res) {
-      try {
-        // Implementa la lógica necesaria para obtener los datos necesarios para la página de inicio
-        res.json({ message: 'Bienvenido a la página de inicio' });
-      } catch (error) {
-        console.error(error);
-        res.status(500).json({ error: 'Error al cargar la página de inicio' });
-      }
-    },
-
     async showProducts(req, res){
       try {
         const products = await Product.find();
