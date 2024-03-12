@@ -18,6 +18,6 @@ routes.get('/dashboard/:productId/edit',ProductController.showEditProduct);
 routes.post('/dashboard/:productId',ProductController.updateProduct);
 routes.get('/dashboard/:productId/delete',ProductController.deleteProduct);
 
-routes.get('/api',ApiController)
+//routes.get('/api',ApiController)
 
 module.exports = routes;
